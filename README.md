@@ -15,3 +15,9 @@ Implementation of a simple logging program that modifies and saves received pack
 The logger listens on a selected TCP port for incoming connections. It allows only limited number of clients.
 The program accepts three arguments: path to the log file, listening address, listening port.
 Clients can be simulated using Telnet processes.
+
+# tcp
+Program that receives messages from clients and save them to a file with a timestamp.
+Communication between the client and the router is be done by sending messages of size at most MAX_BUF terminated with a '\n' character. It can also receive messageges from STDIN. 
+The router listens on a TCP socket. It is single-threaded and single-process. Hosts can be simulated as Telnet processes. It allows only limited number of clients </br>
+The program accepts two arguments: socket port and filename.
