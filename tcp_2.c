@@ -134,7 +134,7 @@ void lost(int fd,int* hosts,fd_set*base_rfds,fd_set*rfds)
 void findIndex(int cfd,int*fdmax,int*hosts,fd_set*base_rfds)
 {
 	int idx=-1;
-	char*busy="BUSY";
+	char*busy="4BUSY";
 	for(int i=0;i<CLIENTS;i++){
 		if(hosts[i]==-1){
 			idx=i;
@@ -188,13 +188,12 @@ void communicate(int fd, int* hosts, fd_set* base_rfds, fd_set* rfds, int file)
     int n,m;
     char buf[MAX_BUF+9];
 	memset(buf,0,MAX_BUF+9);
-	char*wrong="WRONG";
+	char*wrong="17WRONG FILTER MODE";
     char c[1],s[2];
     ssize_t size,total=0;
 	if((size=read(fd,&c,sizeof(char)))<0){
         ERR("read");
     }
-	printf("size=%ld\n",size);
 	m=c[0]-'0';
 	if(size==0){
 		lost(fd,hosts,base_rfds,rfds);
@@ -203,7 +202,7 @@ void communicate(int fd, int* hosts, fd_set* base_rfds, fd_set* rfds, int file)
 	printf("m=%d\n",m);
 
 	if(m<1||m>3){
-		printf("wrong\n");
+		printf("wrong filter mode\n");
 		if(write(fd,wrong,strlen(wrong))<0)
 			ERR("write");
 		char trash_message[MAX_BUF];
